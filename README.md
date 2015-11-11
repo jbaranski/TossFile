@@ -22,5 +22,5 @@ A simple Sublime Text plugin for copying the current file to a new location.
 // 1. Run the toss file command against a file, for example - /home/source77/my/special/file/file.txt
 // 2. No matches found, nothing happens
 //
-// NOTE: You can use the same path key with different desintations to copy the same file to multiple places
+// NOTE: You can use the same path as a key with different destination values to copy the same file to multiple places
 ```
