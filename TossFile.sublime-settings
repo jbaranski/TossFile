@@ -1,0 +1,10 @@
+{
+    "paths": [
+        {
+            "C:\\trunk_svn\\java": "C:\\dev\\eam_112\\com\\dstm"
+        },
+        {
+            "C:\\patch111_svn\\java": "C:\\dev\\eam_111\\com\\dstm"
+        }
+    ]
+}
