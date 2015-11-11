@@ -13,7 +13,7 @@ Sublime Text plugin for copying the current file to a new location
 ]
 ```
 
-# Use Cases
+# How To
 Example 1 (assume you are using the settings listed above):
 
 1. Run the toss file command against a file, for example `/home/source1/my/special/file/file.txt`
