@@ -3,7 +3,7 @@
 A simple Sublime Text plugin for copying the current file to a new location.
 
 
-`
+```
 "paths": [
     {
         "/home/source1": "/home/destination1"
@@ -23,4 +23,4 @@ A simple Sublime Text plugin for copying the current file to a new location.
 // 2. No matches found, nothing happens
 //
 // NOTE: You can use the same path key with different desintations to copy the same file to multiple places
-`
+```
