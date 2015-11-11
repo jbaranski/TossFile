@@ -1,6 +1,7 @@
 # Toss File
 Sublime Text plugin for copying the current file to a new location
 
+# Settings
 ```
 "paths": [
     {
