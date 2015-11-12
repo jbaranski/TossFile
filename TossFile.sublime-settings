@@ -1,10 +1,28 @@
 {
+    // Example settings
+    // ----------------
+    //
+    // *nix
+    // ----
+    //
     // "paths": [
     //     {
-    //         "/home/source1": "/home/destination1"
+    //         "/home/source1/": "/home/destination1/"
     //     },
     //     {
-    //         "/home/source2": "/home/destination2"
+    //         "/home/source2/": "/home/destination2/"
+    //     }
+    // ]
+    //
+    // Windows
+    // -------
+    //
+    // "paths": [
+    //     {
+    //         "C:\\home\\source1\\": "C:\\home\\destination1\\"
+    //     },
+    //     {
+    //         "C:\\home\\source2\\": "C:\\home\\destination2\\"
     //     }
     // ]
     "paths": [

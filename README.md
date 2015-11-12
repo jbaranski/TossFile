@@ -17,7 +17,7 @@ Manual:
 After install add some paths to your settings (see below) and now you're ready to go
 
 # Settings
-It's better to ALWAYS use a trailing slash to end the paths you list
+It's better to always use a trailing slash to end the paths you list
 
 *nix
 ```
@@ -44,7 +44,7 @@ Windows
 
 # Example Scenarios
 
-Invoke the plugin via `Toss File` context menu item by right clicking on the current file, or pressing `Ctrl+Shift+P` or `Cmd+Shift+P` and executing the `Toss File` command.
+Invoke the plugin via `Toss File` context menu item by right clicking on the current file, or pressing `Ctrl+Shift+P` or `Cmd+Shift+P` and executing the `Toss File` command
 
 Example 1 (assume you are using the settings listed above):
 
