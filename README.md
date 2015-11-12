@@ -17,7 +17,7 @@ Manual:
 After install add some paths to your settings (see below) and now you're ready to go
 
 # Settings
-It's better to ALWAYS use a trailing slash to end the path source / destination you list
+It's better to ALWAYS use a trailing slash to end the paths you list
 
 *nix
 ```
