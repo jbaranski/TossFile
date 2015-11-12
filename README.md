@@ -10,8 +10,9 @@ Using [Package Control](http://wbond.net/sublime_packages/package_control):
 2. Type `install`, select `Package Control: Install Package`
 3. Find `Toss File` and install
 
-Manual install - download via the project [releases](https://github.com/jbaranski/TossFile/releases)
-1. Download the latest release using the link above
+Manual install
+
+1. Download the [latest release](https://github.com/jbaranski/TossFile/releases) using the link above
 2. Extract the zip into a folder
 3. Copy the folder to `<SUBLIME_TEXT_HOME>/Data/Packages/`
 
