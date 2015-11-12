@@ -10,7 +10,7 @@ Using [Package Control](http://wbond.net/sublime_packages/package_control):
 
 Manual:
 
-1. Download the [latest release](https://github.com/jbaranski/TossFile/releases) using the link above
+1. Download the [latest release](https://github.com/jbaranski/TossFile/releases)
 2. Extract the zip into a folder
 3. Copy the folder to `<SUBLIME_TEXT_HOME>/Data/Packages/`
 
