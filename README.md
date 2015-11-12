@@ -1,8 +1,6 @@
 # Toss File
 Sublime Text plugin for copying the current file to new location(s)
 
-The general idea is if you invoke the toss file command against the current working file and the file path STARTS WITH with any of the path keys listed in the settings file, the path key is replaced with the corresponding destination value and the file is copied to that location. See below for more in depth information
-
 # Install
 Using [Package Control](http://wbond.net/sublime_packages/package_control):
 
@@ -16,10 +14,10 @@ Manual install
 2. Extract the zip into a folder
 3. Copy the folder to `<SUBLIME_TEXT_HOME>/Data/Packages/`
 
-After install add some paths to your settings (see below) and now you're ready to go.
+After install add some paths to your settings (see below) and now you're ready to go
 
 # Settings
-NOTE: It's better to ALWAYS use a trailing slash to end the path source / destination you list
+It's better to ALWAYS use a trailing slash to end the path source / destination you list
 
 *nix
 ```
@@ -44,11 +42,10 @@ Windows
 ]
 ```
 
-# Usage
-The plugin can be invoked via a right click context menu in the current file
-The plugin can be invoked pressing `Ctrl+Shift+P` and running the `Toss File` command
-
 # Example Scenarios
+
+Invoke the plugin via `Toss File` context menu item by right clicking on the current file, or pressing `Ctrl+Shift+P` or `Cmd+Shift+P` and executing the `Toss File` command.
+
 Example 1 (assume you are using the settings listed above):
 
 1. Run the toss file command against a file, for example `/home/source1/my/special/file/file.txt`
