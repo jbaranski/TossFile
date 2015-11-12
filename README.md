@@ -42,6 +42,7 @@ Windows
         "C:\\home\\source2\\": "C:\\home\\destination2\\"
     }
 ]
+```
 
 # Usage
 The plugin can be invoked via a right click context menu in the current file
