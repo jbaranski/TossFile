@@ -1,5 +1,5 @@
 # Toss File
-Sublime Text plugin for copying the current file to new location(s)
+Sublime Text plugin for copying the current file or all open files to new location(s)
 
 # Install
 Using [Package Control](http://wbond.net/sublime_packages/package_control):
@@ -43,6 +43,8 @@ Windows
 ```
 
 # Example Scenarios
+
+NOTE: `Toss All Files` context menu item works exactly the same as `Toss File` except it includes all currently open files
 
 Invoke the plugin via `Toss File` context menu item by right clicking on the current file, or pressing `Ctrl+Shift+P` or `Cmd+Shift+P` and executing the `Toss File` command
 

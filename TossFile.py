@@ -3,9 +3,8 @@ import shutil
 import sublime
 import sublime_plugin
 
-class TossFileCommand(sublime_plugin.TextCommand):
-    def run(self, edit, **kwargs):
-        file_name = self.view.file_name()
+class BaseTossFile(sublime_plugin.TextCommand):
+    def toss(self, file_name):
         if file_name:
             paths = sublime.load_settings("TossFile.sublime-settings").get("paths", [])
             for path in paths:
@@ -16,3 +15,13 @@ class TossFileCommand(sublime_plugin.TextCommand):
                         if not os.path.exists(copy_to_dir):
                             os.makedirs(copy_to_dir)
                         shutil.copyfile(file_name, copy_to)
+
+class TossFileCommand(BaseTossFile):
+    def run(self, edit, **kwargs):
+        self.toss(self.view.file_name())
+
+class TossAllFilesCommand(BaseTossFile):
+    def run(self, edit, **kwargs):
+        open_views = self.view.window().views()
+        for x in open_views:
+            self.toss(x.file_name())

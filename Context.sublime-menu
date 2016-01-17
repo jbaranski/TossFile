@@ -3,5 +3,10 @@
         "id" : "toss_file",
         "caption" : "Toss File",
         "command" : "toss_file"
+    },
+    {
+        "id" : "toss_all_files",
+        "caption" : "Toss All Files",
+        "command" : "toss_all_files"
     }
 ]
