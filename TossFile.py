@@ -13,9 +13,7 @@ class BaseTossFile(sublime_plugin.TextCommand):
 
     def get_status_timeout(self):
         timeout = sublime.load_settings("TossFile.sublime-settings").get("statusTimeout", 0)
-        if not isinstance(timeout, int):
-            timeout = 5
-        elif timeout == 0:
+        if not isinstance(timeout, int) or timeout == 0:
             timeout = 5
         timeout = timeout * 1000
         return timeout
