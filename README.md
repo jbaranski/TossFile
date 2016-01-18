@@ -42,6 +42,11 @@ Windows
 ]
 ```
 
+Control how long the visual indicator remains in the footer of the file the command was run in (in seconds)
+```
+statusTimeout: 5
+```
+
 # Example Scenarios
 
 NOTE: `Toss All Files` context menu item works exactly the same as `Toss File` except it includes all currently open files

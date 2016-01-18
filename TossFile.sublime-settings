@@ -1,5 +1,5 @@
 {
-    // Example settings
+    // Example path settings
     // ----------------
     //
     // *nix
@@ -27,5 +27,12 @@
     // ]
     "paths": [
 
-    ]
+    ],
+    // Controls how long the visual status indicator appears
+    // in the footer of the file the command was run in (in seconds)
+    //
+    // NOTE:
+    //      - If you put quotes around this number it will be ignored and default back to 5 seconds
+    //      - If you set this value to 0 it will be ignored and default back to 5 seconds
+    "statusTimeout": 5
 }
