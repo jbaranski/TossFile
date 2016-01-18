@@ -42,7 +42,7 @@ Windows
 ]
 ```
 
-Control how long the visual indicator remains in the footer of the file the command was run in (in seconds)
+A visual indicator will appear in the footer of the file the command was run against. This setting controls how long that message displays (in seconds)
 ```
 statusTimeout: 5
 ```
