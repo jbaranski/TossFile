@@ -18,14 +18,14 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/TossFile/TossFile.sublime-settings"
+                                    "file": "${packages}/TossFile/Toss File.sublime-settings"
                                 },
                                 "caption": "Settings – Default"
                             },
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/User/TossFile.sublime-settings"
+                                    "file": "${packages}/User/Toss File.sublime-settings"
                                 },
                                 "caption": "Settings – User"
                             }
