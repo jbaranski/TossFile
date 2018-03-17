@@ -17,7 +17,7 @@ Manual:
 After install add some paths to your settings (see below) and now you're ready to go
 
 # Settings
-It's better to always use a trailing slash to end the paths you list
+It's better to always use a trailing slash to end the paths you list (default is empty list)
 
 *nix
 ```
@@ -42,9 +42,39 @@ Windows
 ]
 ```
 
-Control how long the status message appears (in seconds) in the footer of the file the command was run in
+Control how long the status message appears (in seconds) in the footer of the file the command was run in (default is 5)
 ```
 statusTimeout: 5
+```
+
+Prevent overwrite exisiting file at the output location if it already exists (default is true)
+```
+"replaceIfExists": false,
+```
+
+List of extensions to ignore even if a path match is found (default is empty list)
+```
+"extensionExcludes": [
+    ".jar",
+    ".zip",
+    ".class"
+]
+```
+
+List of file names to ignore even if a path match is found (default is empty list)
+```
+"nameExcludes": [
+    "File1.class",
+    "File1.java"
+]
+```
+
+List of output paths to ignore even if a path match is found (default is empty list) (example output paths are based on *nix "paths" above)
+```
+pathExcludes: [
+    "/home/destination1/build/",
+    "/home/destination1/topsecret/"
+]
 ```
 
 # Example Scenarios
