@@ -1,6 +1,8 @@
 # Toss File
 Sublime Text plugin for copying the current file or all open files to new location(s)
 
+<sup><sub>Visual Studio Code equivalent: [https://github.com/jbaranski/toss-file](https://github.com/jbaranski/toss-file)</sub></sup>
+
 # Install
 Using [Package Control](http://wbond.net/sublime_packages/package_control):
 

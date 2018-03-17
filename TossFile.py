@@ -11,6 +11,7 @@ class BaseTossFile(sublime_plugin.TextCommand):
         self.num_files_tossed = 0
         self.num_locations_tossed = 0
         self.num_files_skipped = 0
+        self.num_locations_skipped = 0
 
     def get_status_timeout(self):
         timeout = sublime.load_settings("TossFile.sublime-settings").get("statusTimeout", 0)
@@ -20,10 +21,23 @@ class BaseTossFile(sublime_plugin.TextCommand):
         return timeout
 
     def get_status_str(self):
-        file_str = "file" if self.num_files_tossed == 1 else "files"
-        location_str = "location" if self.num_locations_tossed == 1 else "locations"
-        status_template_str = Template("$toss_file_type: tossed $num_files_tossed $file_str to $num_locations_tossed $location_str")
-        return status_template_str.substitute(toss_file_type=self.toss_file_type, num_files_tossed=str(self.num_files_tossed), file_str=file_str, num_locations_tossed=str(self.num_locations_tossed), location_str=location_str)
+        toss_file_str = "file" if self.num_files_tossed == 1 else "files"
+        toss_location_str = "location" if self.num_locations_tossed == 1 else "locations"
+        skip_file_str = "file" if self.num_files_skipped == 1 else "files"
+        skip_location_str = "location" if self.num_locations_skipped == 1 else "locations"
+        tmpl = "$toss_file_type: tossed $num_files_tossed $toss_file_str to $num_locations_tossed $toss_location_str"
+        if self.num_files_skipped > 0:
+            tmpl = tmpl + "; settings made toss skip $num_files_skipped $skip_file_str at $num_locations_skipped $skip_location_str"
+        status_template_str = Template(tmpl)
+        return status_template_str.substitute(toss_file_type=self.toss_file_type,
+                                              num_files_tossed=str(self.num_files_tossed),
+                                              toss_file_str=toss_file_str,
+                                              num_locations_tossed=str(self.num_locations_tossed),
+                                              toss_location_str=toss_location_str,
+                                              num_files_skipped=str(self.num_files_skipped),
+                                              skip_file_str=skip_file_str,
+                                              num_locations_skipped=str(self.num_locations_skipped),
+                                              skip_location_str=skip_location_str)
 
     def update_status(self):
         self.view.set_status("toss_file_status", self.get_status_str())
@@ -85,6 +99,7 @@ class BaseTossFile(sublime_plugin.TextCommand):
                     if file_name.startswith(source):
                         copy_to = file_name.replace(source, destination)
                         if self.skip(copy_to):
+                            self.num_locations_skipped = self.num_locations_skipped + 1
                             if not is_file_skipped:
                                 self.num_files_skipped = self.num_files_skipped + 1
                                 is_file_skipped = True
