@@ -1,8 +1,8 @@
+from string import Template
 import os
 import shutil
 import sublime
 import sublime_plugin
-import time
 
 
 class BaseTossFile(sublime_plugin.TextCommand):
@@ -10,6 +10,7 @@ class BaseTossFile(sublime_plugin.TextCommand):
         self.toss_file_type = toss_type
         self.num_files_tossed = 0
         self.num_locations_tossed = 0
+        self.num_files_skipped = 0
 
     def get_status_timeout(self):
         timeout = sublime.load_settings("TossFile.sublime-settings").get("statusTimeout", 0)
@@ -18,29 +19,84 @@ class BaseTossFile(sublime_plugin.TextCommand):
         timeout = timeout * 1000
         return timeout
 
+    def get_status_str(self):
+        file_str = "file" if self.num_files_tossed == 1 else "files"
+        location_str = "location" if self.num_locations_tossed == 1 else "locations"
+        status_template_str = Template("$toss_file_type: tossed $num_files_tossed $file_str to $num_locations_tossed $location_str")
+        return status_template_str.substitute(toss_file_type=self.toss_file_type, num_files_tossed=str(self.num_files_tossed), file_str=file_str, num_locations_tossed=str(self.num_locations_tossed), location_str=location_str)
+
     def update_status(self):
-        self.view.set_status("toss_file_status", self.toss_file_type + ": tossed " + str(self.num_files_tossed) + " file(s) to " + str(self.num_locations_tossed) + " location(s)")
+        self.view.set_status("toss_file_status", self.get_status_str())
         sublime.set_timeout(lambda: self.clear_status(), self.get_status_timeout())
 
     def clear_status(self):
         self.view.set_status("toss_file_status", "")
 
+    def skip(self, copy_to):
+        return self.skip_existing_file(copy_to) or self.skip_name(copy_to) or self.skip_extension(copy_to) or self.skip_path(copy_to)
+
+    def skip_existing_file(self, copy_to):
+        skip = False
+        replace_if_exists = sublime.load_settings("TossFile.sublime-settings").get("replaceIfExists", True)
+        if type(replace_if_exists) != bool:
+            replace_if_exists = True
+        if not replace_if_exists:
+            if os.path.isfile(copy_to):
+                skip = True
+        return skip
+
+    def skip_name(self, copy_to):
+        skip = False
+        name_excludes = sublime.load_settings("TossFile.sublime-settings").get("nameExcludes", [])
+        file_name = os.path.basename(copy_to)
+        for name in name_excludes:
+            if file_name == name:
+                skip = True
+                break
+        return skip
+
+    def skip_extension(self, copy_to):
+        skip = False
+        extension_excludes = sublime.load_settings("TossFile.sublime-settings").get("extensionExcludes", [])
+        file_extension = os.path.splitext(copy_to)[1]
+        if file_extension:
+            for extension in extension_excludes:
+                if file_extension == extension:
+                    skip = True
+                    break
+        return skip
+
+    def skip_path(self, copy_to):
+        skip = False
+        paths = sublime.load_settings("TossFile.sublime-settings").get("pathExcludes", [])
+        for path in paths:
+            if copy_to.startswith(path):
+                skip = True
+                break
+        return skip
+
     def toss(self, file_name):
         is_file_tossed = False
+        is_file_skipped = False
         if file_name:
             paths = sublime.load_settings("TossFile.sublime-settings").get("paths", [])
             for path in paths:
                 for source, destination in path.items():
                     if file_name.startswith(source):
                         copy_to = file_name.replace(source, destination)
-                        copy_to_dir = os.path.dirname(copy_to)
-                        if not os.path.exists(copy_to_dir):
-                            os.makedirs(copy_to_dir)
-                        shutil.copyfile(file_name, copy_to)
-                        self.num_locations_tossed = self.num_locations_tossed + 1
-                        if not is_file_tossed:
-                            self.num_files_tossed = self.num_files_tossed + 1
-                            is_file_tossed = True
+                        if self.skip(copy_to):
+                            if not is_file_skipped:
+                                self.num_files_skipped = self.num_files_skipped + 1
+                                is_file_skipped = True
+                        else:
+                            copy_to_dir = os.path.dirname(copy_to)
+                            if not os.path.exists(copy_to_dir):
+                                os.makedirs(copy_to_dir)
+                            shutil.copyfile(file_name, copy_to)
+                            self.num_locations_tossed = self.num_locations_tossed + 1
+                            if not is_file_tossed:
+                                self.num_files_tossed = self.num_files_tossed + 1
+                                is_file_tossed = True
 
 
 class TossFileCommand(BaseTossFile):
