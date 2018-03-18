@@ -1,6 +1,6 @@
 {
     // Example path settings
-    // ----------------
+    // ---------------------
     //
     // *nix
     // ----
@@ -38,7 +38,7 @@
     // Replace an exisiting file at the output location if it already exists
     "replaceIfExists": true,
     // List of extensions to ignore even if a path match is found
-    // Example: "extensionExcludes": [".jar", ".class"]
+    // Example: [".jar", ".class"]
     "extensionExcludes": [
 
     ],
