@@ -13,13 +13,13 @@ Using [Package Control](http://wbond.net/sublime_packages/package_control):
 Manual:
 
 1. Download the [latest release](https://github.com/jbaranski/TossFile/releases)
-2. Extract the zip into a folder
+2. Extract the contents of the zip into a folder called `Toss File` (the space is important in the folder name)
 3. Copy the folder to `<SUBLIME_TEXT_HOME>/Data/Packages/`
 
 After install add some paths to your settings (see below) and now you're ready to go
 
 # Settings
-It's better to always use a trailing slash to end the paths you list (default is empty list)
+Always use a trailing slash to end the paths you list (default is empty list)
 
 *nix
 ```
@@ -73,9 +73,17 @@ List of file names to ignore even if a path match is found (default is empty lis
 
 List of output paths to ignore even if a path match is found (default is empty list) (example output paths are based on *nix "paths" above)
 ```
-"pathExcludes": [
+"outputPathExcludes": [
     "/home/destination1/build/",
     "/home/destination1/topsecret/"
+]
+```
+
+List of input paths to ignore even if a path match is found (default is empty list) (example output paths are based on *nix "paths" above)
+```
+"inputPathExcludes": [
+    "/home/source1/build/",
+    "/home/source1/topsecret/"
 ]
 ```
 

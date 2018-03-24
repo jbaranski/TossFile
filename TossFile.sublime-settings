@@ -49,7 +49,12 @@
     ],
     // List of output paths to ignore even if a path match is found
     // Example (based on *nix "paths" above): ["/home/destination1/build/", "home/destination1/topsecret/"]
-    "pathExcludes": [
+    "outputPathExcludes": [
+
+    ],
+    // List of input paths to ignore even if a path match is found
+    // Example (based on *nix "paths" above): ["/home/source1/build/", "home/source1/topsecret/"]
+    "inputPathExcludes": [
 
     ]
 }

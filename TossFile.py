@@ -46,8 +46,8 @@ class BaseTossFile(sublime_plugin.TextCommand):
     def clear_status(self):
         self.view.set_status("toss_file_status", "")
 
-    def skip(self, copy_to):
-        return self.skip_existing_file(copy_to) or self.skip_name(copy_to) or self.skip_extension(copy_to) or self.skip_path(copy_to)
+    def skip(self, copy_from, copy_to):
+        return self.skip_existing_file(copy_to) or self.skip_name(copy_to) or self.skip_extension(copy_to) or self.skip_path("outputPathExcludes", copy_to) or self.skip_path("inputPathExcludes", copy_from)
 
     def skip_existing_file(self, copy_to):
         skip = False
@@ -80,11 +80,14 @@ class BaseTossFile(sublime_plugin.TextCommand):
                     break
         return skip
 
-    def skip_path(self, copy_to):
+    def skip_path(self, settingKey, target):
         skip = False
-        paths = sublime.load_settings("TossFile.sublime-settings").get("pathExcludes", [])
+        paths = sublime.load_settings("TossFile.sublime-settings").get(settingKey, [])
         for path in paths:
-            if copy_to.startswith(path):
+            print(target)
+            print(path)
+            print(settingKey)
+            if target.startswith(path):
                 skip = True
                 break
         return skip
@@ -98,7 +101,7 @@ class BaseTossFile(sublime_plugin.TextCommand):
                 for source, destination in path.items():
                     if file_name.startswith(source):
                         copy_to = file_name.replace(source, destination)
-                        if self.skip(copy_to):
+                        if self.skip(file_name, copy_to):
                             self.num_locations_skipped = self.num_locations_skipped + 1
                             if not is_file_skipped:
                                 self.num_files_skipped = self.num_files_skipped + 1
