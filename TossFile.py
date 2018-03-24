@@ -84,9 +84,6 @@ class BaseTossFile(sublime_plugin.TextCommand):
         skip = False
         paths = sublime.load_settings("TossFile.sublime-settings").get(settingKey, [])
         for path in paths:
-            print(target)
-            print(path)
-            print(settingKey)
             if target.startswith(path):
                 skip = True
                 break
